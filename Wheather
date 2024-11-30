@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Weather Forecast App</h1>
+    </header>
+    <main>
+        <section class="search-section">
+            <input type="text" id="city" placeholder="Enter city name">
+            <button id="search-btn">Search</button>
+        </section>
+        <section class="weather-section">
+            <h2 id="city-name"></h2>
+            <p id="weather-description"></p>
+            <p id="temperature"></p>
+            <p id="humidity"></p>
+            <p id="wind-speed"></p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+*CSS (in style.css file)*
+
+```
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+#city {
+    padding: 0.5em;
+    font-size: 1em;
+    border: none;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#search-btn {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    border: none;
+    border-radius: 0.5em;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.weather-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#city-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+#weather-description {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+#temperature {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+#humidity {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+#wind-speed {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+```
+
+*JavaScript (in script.js file)*
+
+```
+const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
+const searchBtn = document.getElementById('search-btn');
+const cityInput = document.getElementById('city');
+const city_name = document.getElementById('city-name');
+const weatherDescription = document.getElementById('weather-description');
+const temperature = document.getElementById('temperature');
+const humidity = document.getElementById('humidity');
+const windSpeed = document.getElementById('wind-speed');
+
+searchBtn.addEventListener('click', () => {
+    const city = cityInput.value.trim();
+    if (city) {
+        fetch(`(link unavailable))
+            .then(response => response.json())
+            .then(data => {
+                city_name.textContent = data.name;
+                weatherDescription.textContent = data.weather[0].description;
+                temperature.textContent = `Temperature: ${data.main.temp} K`;
+                humidity.textContent = `Humidity: ${data.main.humidity} %`;
+                windSpeed.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+});
